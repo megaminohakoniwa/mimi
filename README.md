@@ -36,7 +36,7 @@ npm run start
 
 このフォルダをそのままGitHubリポジトリへアップロードできます。`.env`、`node_modules`、`.next`、`dist`、Wranglerのローカル状態は `.gitignore` で除外しています。
 
-GitHub Actionsでは、pushとPull Requestごとに `npm ci` と `npm run build` を実行します。デプロイ先を追加する場合は、公開先の仕様に合わせてワークフローを追加してください。このアプリはVinext/Cloudflare Workers向けのビルド構成を含むため、GitHub Pagesの静的ホスティングへそのまま載せる構成ではありません。
+GitHub Actionsでは、pushとPull Requestごとに `npm ci` と本番ビルドを確認します。`main` へのpush時は、クライアントだけで完結する静的版も作成してGitHub Pagesへ自動デプロイします。公開URLは `https://megaminohakoniwa.github.io/Shion/` です。通常のプレビュー用にはVinext/Cloudflare Workers向けのビルド構成も残しています。
 
 ## 公的情報について
 
