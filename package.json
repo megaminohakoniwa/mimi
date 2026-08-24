@@ -1,7 +1,8 @@
 {
-  "name": "sites-project",
+  "name": "oyasumi-tetsuzuki-navi",
   "version": "0.1.0",
   "private": true,
+  "description": "日本向けの相続初期整理AI MVP",
   "engines": {
     "node": ">=22.13.0"
   },
