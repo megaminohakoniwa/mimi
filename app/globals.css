@@ -47,3 +47,29 @@
 .current-home-page>details:first-of-type:not([open])>.chapter-map{display:block}
 .journey-hud{top:84px}
 @media(max-width:760px){.journey-hud{top:70px}}
+
+/* Four-scene home: the menu keeps history and utility content out of the main flow. */
+.current-home-page>.home-shortcuts,.current-home-page>.home-today,.current-home-page>details:nth-of-type(2),.current-home-page>details:nth-of-type(3),.current-home-page>.journey-notice,.current-home-page>.home-local-note{display:none}
+.current-home-page>.main-quest-card,.current-home-page>.side-quest-section,.current-home-page>.home-discovery-section,.current-home-page>details:first-of-type{position:relative}
+.current-home-page>.main-quest-card:before,.current-home-page>.side-quest-section:before,.current-home-page>.home-discovery-section:before,.current-home-page>details:first-of-type:before{display:block;margin-bottom:20px;color:var(--muted);font-size:11px;letter-spacing:.14em;font-weight:700}
+.current-home-page>.main-quest-card:before{content:'01 / 04'}
+.current-home-page>.side-quest-section:before{content:'02 / 04'}
+.current-home-page>.home-discovery-section:before{content:'03 / 04';color:#9b6c2d}
+.current-home-page>details:first-of-type:before{content:'04 / 04';padding:30px 34px 0;background:#f5faf6}
+.current-home-page>details:first-of-type{background:#f5faf6}
+.current-home-page>.side-quest-section .section-heading-row{margin-bottom:3px}
+.current-home-page>.side-quest-section .quest-summary{border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;padding:17px 0}
+.current-home-page>.side-quest-section .quest-summary:last-child{border-bottom:0}
+.current-home-page>.side-quest-section .quest-summary-meta{color:var(--green)}
+.current-home-page>.side-quest-section h2{font-size:0}
+.current-home-page>.side-quest-section h2:after{content:'他に進められること';font:500 23px/1.4 "Yu Mincho",serif}
+.current-home-page>.home-discovery-section h2{font-size:0}
+.current-home-page>.home-discovery-section h2:after{content:'新しく見つかったこと';font:500 23px/1.4 "Yu Mincho",serif}
+.current-home-page>details:first-of-type>summary{font-size:0;background:#f5faf6}
+.current-home-page>details:first-of-type>summary:before{content:'相続の全体像';font:500 16px/1.4 serif}
+.current-home-page>details:first-of-type>summary:after{font-size:16px}
+.hud-brand span{display:none}.hud-scene-dots{display:flex;align-items:center;gap:7px;justify-content:center}.hud-scene-dots i{display:block;width:7px;height:7px;border-radius:50%;background:#c7d3cc}.hud-scene-dots i.is-current{width:9px;height:9px;background:var(--deep)}.hud-records{border:0;border-left:1px solid var(--line);padding:2px 0 2px 15px;background:none;color:var(--muted);font-size:11px;white-space:nowrap}.hud-records:hover{color:var(--deep)}
+.records-page{max-width:960px;padding-bottom:100px}.records-top{display:flex;align-items:center;justify-content:space-between;padding:26px 0 10px}.records-label{color:var(--muted);font-size:11px}.records-intro{padding:20px 0 26px;border-bottom:1px solid var(--line)}.records-intro h1{font-family:"Yu Mincho",serif;font-size:35px;font-weight:500;margin:0}.records-intro p:last-child{max-width:680px;color:var(--muted);font-size:13px}.records-update,.records-facts,.records-completed,.records-timeline{margin-top:27px;padding:25px 26px;border:1px solid var(--line);border-radius:10px;background:#fff}.records-update h2,.records-facts h2,.records-completed h2{font-family:"Yu Mincho",serif;font-size:23px;font-weight:500;margin:0}.records-update>p:not(.section-kicker){color:var(--muted);font-size:13px}.records-update form{display:flex;align-items:flex-end;gap:12px;margin-top:13px}.records-update textarea{flex:1;width:100%;font-size:13px}.records-facts .record-grid{padding:0;border-top:0}.records-completed .completed-quest-list{margin-top:14px}.records-timeline{padding:0;border:0;background:transparent}.records-local-note{margin-top:28px}.scene-indicator{position:fixed;z-index:45;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:7px;padding:7px 11px;border-radius:30px;background:#fffffff2;box-shadow:0 5px 16px #26393617}
+@media(max-width:760px){.current-home-page>.main-quest-card:before,.current-home-page>.side-quest-section:before,.current-home-page>.home-discovery-section:before{margin-bottom:14px}.current-home-page>details:first-of-type:before{padding:24px 12px 0}.current-home-page>details:first-of-type>summary:before{font-size:15px}.hud-brand span{display:block}.hud-records{padding-left:9px;font-size:10px}.hud-scene-dots{gap:5px}.hud-scene-dots i{width:6px;height:6px}.records-page{padding-bottom:70px}.records-top{padding-top:16px}.records-intro h1{font-size:29px}.records-update,.records-facts,.records-completed{padding:21px 17px}.records-update form{display:block}.records-update form .outline{margin-top:9px;width:100%}.records-timeline{margin-top:22px}}
+.hud-chapter-dots{display:flex;align-items:center;justify-content:center;gap:8px;min-width:110px}.hud-chapter-dots i{display:block;width:7px;height:7px;border-radius:50%;background:#c7d3cc}.hud-chapter-dots i.is-past{background:var(--deep)}.scene-indicator i{display:block;width:6px;height:6px;border-radius:50%;background:#c7d3cc}.scene-indicator i.is-current{width:8px;height:8px;background:var(--deep)}
+@media(max-width:760px){.hud-chapter-dots{gap:6px;min-width:80px}.hud-chapter-dots i{width:6px;height:6px}.scene-indicator{bottom:12px}}
