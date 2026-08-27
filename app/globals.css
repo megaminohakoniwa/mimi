@@ -94,5 +94,5 @@
 /* The mobile hero ornament extends beyond its column by design. Keep that
    decorative layer inside the hero so the landing screen never creates a
    horizontal scroll area. */
-.hero{overflow:hidden}
+.hero,.journey-hero{overflow:hidden}
 
