@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './ux-fixes.css';
 
 export const metadata: Metadata = {
   metadataBase:new URL('https://oyasumi-tetsuzuki-navi.kh4yjrzrf8.chatgpt.site'),
