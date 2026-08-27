@@ -45,3 +45,5 @@
 .current-home-page>.home-local-note{order:10}
 /* The overall map is the fourth theme; keep it visible while retaining the native details control. */
 .current-home-page>details:first-of-type:not([open])>.chapter-map{display:block}
+.journey-hud{top:84px}
+@media(max-width:760px){.journey-hud{top:70px}}
