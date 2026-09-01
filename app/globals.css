@@ -95,3 +95,8 @@
    decorative layer inside the hero so the landing screen never creates a
    horizontal scroll area. */
 .hero,.journey-hero{overflow:hidden}
+
+.chapter-branches .route-unknown{border-style:dashed;color:#8b7a4f;background:#fffaf0}
+.chapter-branches .route-active{border-color:#94b9a1;background:#eef6ef;color:var(--deep);font-weight:700}
+.chapter-branches .route-resolved{border-color:#b6cbbd;background:#f5faf5;color:#52725f}
+.chapter-branches .route-not_applicable{border-color:#d8dfda;background:#f4f6f3;color:#9aa49f}
