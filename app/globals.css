@@ -175,11 +175,24 @@
 @media(max-width:760px){.primary-quest-content{grid-template-columns:42px minmax(0,1fr);gap:13px}.quest-visual-icon{width:40px;height:40px;border-radius:10px;font-size:20px}.primary-quest-copy h2{font-size:30px!important}.primary-quest-copy>.primary{width:100%;min-width:0;margin-top:17px}.progressive-details p{font-size:11px!important}.quest-summary{grid-template-columns:33px minmax(0,1fr) 34px;gap:10px;padding:14px 0}.quest-summary h3{font-size:15px}.quest-task-lead{display:block}.quest-task-lead b{display:block;margin-top:2px}.quest-detail-heading{gap:12px}.quest-detail-heading h1{font-size:28px}}
 /* Exploratory winding map */
 .exploration-map{position:relative;min-height:390px;margin-top:10px;padding:8px 0 12px;overflow:visible}
-.map-road{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.map-road path{fill:none;stroke:#a9bfb0;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
-.map-road-desktop path{stroke-dasharray:none}
+.map-road{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.map-road-segment{fill:none;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .45s ease,stroke-width .45s ease,opacity .45s ease}
+.map-road-segment.is-traveled{stroke:#34574f}
+.map-road-segment.is-current{stroke:#a77a3c;stroke-width:3.5}
+.map-road-segment.is-future{stroke:#c8d5cb;stroke-dasharray:2.5 4.5;opacity:.8}
 .map-road-mobile{display:none}
-.map-chapter-points{position:absolute;inset:0}
+.map-branch-road-mobile{display:none}
+.map-branch-road{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.map-branch-segment{fill:none;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+.map-branch-segment.map-fogged{stroke:#b6c8bb;stroke-dasharray:2.5 4;opacity:.78}
+.map-branch-segment.map-exploring{stroke:#8ba796;opacity:.72}
+.map-branch-segment.map-traveled{stroke:#557764;stroke-width:1.8;opacity:.84}
+.map-branch-segment.map-not_applicable{stroke:#d8e0da;stroke-width:1;stroke-dasharray:16 84;opacity:.72}
+.map-branch-progress{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.2;transition:stroke-dashoffset .45s ease;opacity:.95}
+.map-branch-progress.map-exploring{stroke:#789786}
+.map-branch-progress.map-traveled{stroke:#4b6d5b}
+.map-branch-road g.is-current .map-branch-progress{stroke:#a77a3c;stroke-width:2.7}
+.map-chapter-points{position:absolute;inset:0;z-index:3}
 .map-chapter-point{position:absolute;display:grid;grid-template-columns:34px auto;column-gap:9px;align-items:center}
 .map-chapter-point:nth-child(1){left:1%;top:61%}
 .map-chapter-point:nth-child(2){left:27%;top:43%}
@@ -193,16 +206,15 @@
 .map-chapter-point.is-current b{color:var(--deep)}
 .map-chapter-point.is-past .map-checkpoint{border-color:#9db7a6;background:#e8f0e8;color:#587461}
 .map-chapter-point:not(.is-current):not(.is-past){opacity:.58}
-.map-route-cluster{position:absolute;display:flex;gap:8px;align-items:flex-start;z-index:2}
-.map-route-cluster-2{left:28%;top:4%;flex-direction:column}
-.map-route-cluster-3{left:43%;top:53%;flex-wrap:wrap;max-width:400px}
-.map-route-cluster-4{left:66%;top:12%;flex-direction:column}
-.map-route-node{display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:6px;align-items:center;min-width:112px;padding:7px 9px;border:1px solid #bdcec1;border-radius:8px;background:#fcfdfb;color:var(--muted);text-align:left}
+.map-route-cluster{position:absolute;display:flex;gap:8px;align-items:flex-start;z-index:4}
+.map-route-cluster-2{left:22%;top:4%;flex-direction:column}
+.map-route-cluster-3{left:42%;top:56%;flex-wrap:wrap;max-width:400px}
+.map-route-cluster-4{left:70%;top:7%;flex-direction:column}
+.map-route-node{display:flex;align-items:center;gap:6px;min-width:92px;padding:5px 8px;border:1px solid #bdcec1;border-radius:20px;background:rgba(252,253,251,.92);color:var(--muted);text-align:left}
 .map-route-node:hover,.map-route-node:focus-visible{border-color:var(--green);background:#f3f8f3}
 .map-route-node.is-current{border-color:#c9a260;background:#fffaf0;color:var(--deep);box-shadow:0 0 0 3px #ead9b8}
 .map-route-node b{font-family:serif;font-size:11px;font-weight:500;line-height:1.3;overflow-wrap:anywhere}
-.map-route-node small{grid-column:2;color:var(--muted);font-size:9px;line-height:1.35}
-.map-route-mark{grid-row:1/3;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;font-size:12px}
+.map-route-mark{display:grid;place-items:center;width:19px;height:19px;border-radius:50%;font-size:11px;flex:none}
 .map-route-node.map-fogged{border-style:dashed;opacity:.62;background:#f7f9f6}
 .map-route-node.map-fogged .map-route-mark{background:#eef2ee;color:#74847b}
 .map-route-node.map-exploring{border-color:#9ebea8;background:#f0f7f1;color:var(--deep)}
@@ -211,7 +223,7 @@
 .map-route-node.map-traveled .map-route-mark{background:#d5e5d8;color:#52725f}
 .map-route-node.map-not_applicable{border-color:#e0e5e0;background:#fafbfa;color:#aab3ad;opacity:.58}
 .map-route-node.map-not_applicable .map-route-mark{background:#f0f2f0;color:#aab3ad}
-.map-book-marker{position:absolute;right:16%;top:2%;z-index:3;display:grid;place-items:center;width:34px;height:34px;border:1px solid #b8cbbd;border-radius:7px;background:#f0f5ef;color:var(--green);font-size:16px}
+.map-book-marker{position:absolute;right:16%;top:2%;z-index:5;display:grid;place-items:center;width:34px;height:34px;border:1px solid #b8cbbd;border-radius:7px;background:#f0f5ef;color:var(--green);font-size:16px}
 .map-book-marker small{display:block;margin-top:1px;color:#94682b;font-size:7px;font-weight:700}
 .map-route-detail{position:relative;z-index:5;max-width:440px;margin:20px auto 0;padding:17px 19px;border:1px solid #cbd8cf;border-radius:9px;background:#fff;box-shadow:0 14px 30px #324c4114}
 .map-route-detail-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
@@ -225,4 +237,5 @@
 .map-next-quest{margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}
 .map-next-quest>span{display:block;color:var(--muted);font-size:10px;font-weight:700}
 .map-next-quest .outline{margin-top:7px;font-size:11px}
-@media(max-width:760px){.exploration-map{min-height:650px;margin-top:12px}.map-road-desktop{display:none}.map-road-mobile{display:block}.map-chapter-point{grid-template-columns:36px minmax(0,1fr);column-gap:10px}.map-chapter-point:nth-child(1){left:calc(50% - 18px);top:1%}.map-chapter-point:nth-child(2){left:15%;top:22%}.map-chapter-point:nth-child(3){left:calc(50% - 18px);top:43%}.map-chapter-point:nth-child(4){left:15%;top:65%}.map-chapter-point:nth-child(5){left:calc(50% - 18px);top:86%}.map-chapter-point b{font-size:14px}.map-route-cluster{left:6%;right:6%;max-width:none}.map-route-cluster-2{top:27%;flex-direction:row;flex-wrap:wrap}.map-route-cluster-3{top:48%;left:6%;right:6%;flex-direction:column;max-width:none}.map-route-cluster-4{top:70%;flex-direction:row;flex-wrap:wrap}.map-route-node{flex:1 1 145px;min-width:0}.map-book-marker{right:8%;top:3%}.map-route-detail{margin-top:17px}.map-next-quest .outline{width:100%}}
+@media(max-width:760px){.exploration-map{min-height:650px;margin-top:12px}.map-road-desktop{display:none}.map-road-mobile{display:block}.map-branch-road-desktop{display:none}.map-branch-road-mobile{display:block}.map-chapter-point{grid-template-columns:36px minmax(0,1fr);column-gap:10px}.map-chapter-point:nth-child(1){left:calc(50% - 18px);top:1%}.map-chapter-point:nth-child(2){left:15%;top:22%}.map-chapter-point:nth-child(3){left:calc(50% - 18px);top:43%}.map-chapter-point:nth-child(4){left:15%;top:65%}.map-chapter-point:nth-child(5){left:calc(50% - 18px);top:86%}.map-chapter-point b{font-size:14px}.map-route-cluster{left:6%;right:6%;max-width:none}.map-route-cluster-2{top:27%;left:6%;right:6%;flex-direction:row;flex-wrap:wrap}.map-route-cluster-3{top:48%;left:6%;right:6%;flex-direction:column;max-width:none}.map-route-cluster-4{top:70%;left:6%;right:6%;flex-direction:row;flex-wrap:wrap}.map-route-node{flex:0 1 145px;min-width:0}.map-book-marker{right:8%;top:3%}.map-route-detail{margin-top:17px}.map-next-quest .outline{width:100%}}
+@media(prefers-reduced-motion:reduce){.map-road-segment,.map-branch-progress{transition:none}}
